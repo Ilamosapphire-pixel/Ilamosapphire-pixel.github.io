@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oluwatoyin Onawale — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5F1E8;
+    --ink:#221E1A;
+    --indigo:#1B2A4A;
+    --indigo-mid:#2C4066;
+    --indigo-pale:#E4E7EF;
+    --gold:#C08A2E;
+    --line: rgba(34,30,26,0.14);
+    --line-light: rgba(245,241,232,0.22);
+    --max: 1040px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+  button{font-family:'Work Sans', sans-serif; cursor:pointer;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(245,241,232,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:16px; padding-bottom:16px;
+  }
+  .navmark{
+    font-family:'Fraunces', serif; font-size:1.05rem; font-weight:600;
+  }
+  .navmark span{color:var(--gold);}
+  .navlinks{display:flex; gap:26px; font-size:0.85rem;}
+  .navlinks a{text-decoration:none; opacity:0.75; transition:opacity .2s;}
+  .navlinks a:hover{opacity:1;}
+  .navtoggle{display:none; background:none; border:none; font-size:1.4rem;}
+  @media (max-width:720px){
+    .navlinks{display:none;}
+    .navtoggle{display:block;}
+    .navlinks.open{
+      display:flex; flex-direction:column; position:absolute; top:100%; left:0; right:0;
+      background:var(--paper); padding:18px 28px; gap:16px; border-bottom:1px solid var(--line);
+    }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    background:var(--indigo);
+    color:var(--paper);
+    overflow:hidden;
+    padding:110px 0 90px;
+  }
+  .hero .wrap{position:relative; z-index:2;}
+  .hero-eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem;
+    letter-spacing:0.16em; text-transform:uppercase; color:var(--gold);
+    margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 6vw, 4.4rem);
+    line-height:1.03;
+    max-width:11ch;
+  }
+  .hero p.lede{
+    max-width:46ch;
+    font-size:1.1rem;
+    color:rgba(245,241,232,0.82);
+    margin-top:26px;
+  }
+  .role-strip{
+    margin-top:34px; display:flex; flex-wrap:wrap; gap:10px 22px;
+    font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:rgba(245,241,232,0.7);
+  }
+  .role-strip span:not(:last-child)::after{content:'·'; margin-left:22px; color:var(--gold);}
+  .hero-cta{margin-top:44px; display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 24px; border-radius:2px; font-size:0.9rem; font-weight:500;
+    text-decoration:none; border:1px solid transparent; transition:all .2s;
+  }
+  .btn-primary{background:var(--gold); color:var(--indigo);}
+  .btn-primary:hover{background:#d69c3a;}
+  .btn-ghost{border-color:rgba(245,241,232,0.4); color:var(--paper);}
+  .btn-ghost:hover{border-color:var(--paper);}
+
+  /* adire-inspired texture, signature element */
+  .adire-bg{
+    position:absolute; inset:0; z-index:1; opacity:0.5;
+  }
+  .adire-divider{
+    height:34px; width:100%; display:block;
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:88px 0;}
+  section.tight{padding:64px 0;}
+  .section-head{margin-bottom:46px; max-width:56ch;}
+  .section-head h2{font-size:clamp(1.7rem, 3.4vw, 2.3rem); margin-top:10px;}
+
+  /* ---------- ABOUT ---------- */
+  .about-body{
+    font-size:1.08rem; max-width:66ch; color:#3a352f;
+  }
+  .about-body p{margin:0 0 18px;}
+  .about-body p:last-child{margin-bottom:0;}
+
+  /* ---------- TRACKS ---------- */
+  .tracks{display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .track{background:var(--paper); padding:34px 28px;}
+  .track .eyebrow{margin-bottom:14px;}
+  .track h3{font-size:1.2rem; margin-bottom:12px;}
+  .track p{font-size:0.94rem; color:#4a453e; margin:0;}
+  @media (max-width:820px){.tracks{grid-template-columns:1fr;}}
+
+  /* ---------- PROJECTS ---------- */
+  .proj-grid{
+    display:grid; grid-template-columns:repeat(2, 1fr); gap:1px; background:var(--line); border:1px solid var(--line);
+  }
+  .proj-card{background:var(--paper); padding:30px 28px;}
+  .proj-top{display:flex; justify-content:space-between; align-items:flex-start; gap:14px; margin-bottom:14px;}
+  .proj-top .eyebrow{margin:0;}
+  .proj-tag{
+    font-family:'IBM Plex Mono', monospace; font-size:0.68rem; letter-spacing:0.06em;
+    color:var(--indigo-mid); background:var(--indigo-pale); padding:3px 9px; white-space:nowrap; flex-shrink:0;
+  }
+  .proj-card h3{font-size:1.14rem; margin-bottom:10px; line-height:1.25;}
+  .proj-card p{font-size:0.92rem; color:#4a453e; margin:0;}
+  @media (max-width:760px){.proj-grid{grid-template-columns:1fr;}}
+
+  /* ---------- TIMELINE ---------- */
+  .timeline{border-top:1px solid var(--line);}
+  .tl-item{
+    display:grid; grid-template-columns:140px 1fr; gap:24px;
+    padding:26px 0; border-bottom:1px solid var(--line);
+  }
+  .tl-date{
+    font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--gold); padding-top:3px;
+  }
+  .tl-role{font-family:'Fraunces', serif; font-size:1.12rem; font-weight:500; margin-bottom:4px;}
+  .tl-org{font-size:0.9rem; color:#6b655c; margin-bottom:10px;}
+  .tl-desc{font-size:0.94rem; color:#4a453e; max-width:60ch;}
+  @media (max-width:640px){
+    .tl-item{grid-template-columns:1fr; gap:6px;}
+  }
+
+  /* ---------- GALLERY ---------- */
+  .gallery-head{
+    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px;
+    margin-bottom:34px;
+  }
+  .gallery-grid{
+    display:grid; grid-template-columns:repeat(auto-fill, minmax(230px, 1fr)); gap:18px;
+  }
+  .g-card{
+    background:#fff; border:1px solid var(--line); overflow:hidden;
+  }
+  .g-card .g-img-wrap{aspect-ratio:4/3; overflow:hidden; background:var(--indigo-pale);}
+  .g-card img{width:100%; height:100%; object-fit:cover;}
+  .g-card-body{padding:12px 14px;}
+  .g-static-caption{
+    margin:0; font-size:0.86rem; color:var(--ink);
+  }
+  .gallery-empty{
+    border:1px dashed var(--line); padding:56px 24px; text-align:center; color:#7a746a; font-size:0.95rem;
+  }
+  .gallery-empty strong{display:block; font-family:'Fraunces', serif; font-size:1.1rem; color:var(--ink); margin-bottom:6px; font-weight:500;}
+  .gallery-note{
+    font-size:0.8rem; color:#8c867c; margin-top:22px; max-width:60ch;
+  }
+  .gallery-note code, .gallery-empty code{
+    font-family:'IBM Plex Mono', monospace; background:var(--indigo-pale); padding:2px 6px; font-size:0.85em; color:var(--indigo-mid);
+  }
+  .g-loading{font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:#8c867c;}
+
+  /* ---------- CONTACT ---------- */
+  .contact{background:var(--indigo); color:var(--paper);}
+  .contact .section-head{max-width:none;}
+  .contact-grid{
+    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:30px;
+  }
+  .contact-links{display:flex; flex-direction:column; gap:10px; font-size:1rem;}
+  .contact-links a{text-decoration:none; border-bottom:1px solid rgba(245,241,232,0.3); padding-bottom:2px; width:fit-content;}
+  .contact-links a:hover{border-color:var(--gold);}
+  footer{
+    padding:26px 0; border-top:1px solid var(--line-light);
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:rgba(245,241,232,0.55);
+  }
+  footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="navmark">Oluwatoyin <span>Onawale</span></div>
+    <div class="navlinks" id="navlinks">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="navtoggle" id="navtoggle" aria-label="Toggle menu">☰</button>
+  </div>
+</nav>
+
+<header class="hero">
+  <svg class="adire-bg" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="adire" width="120" height="120" patternUnits="userSpaceOnUse">
+        <circle cx="60" cy="60" r="34" fill="none" stroke="#C08A2E" stroke-width="1" opacity="0.35"/>
+        <circle cx="60" cy="60" r="20" fill="none" stroke="#C08A2E" stroke-width="1" opacity="0.35"/>
+        <circle cx="0" cy="0" r="16" fill="none" stroke="#F5F1E8" stroke-width="0.8" opacity="0.18"/>
+        <circle cx="120" cy="0" r="16" fill="none" stroke="#F5F1E8" stroke-width="0.8" opacity="0.18"/>
+        <circle cx="0" cy="120" r="16" fill="none" stroke="#F5F1E8" stroke-width="0.8" opacity="0.18"/>
+        <circle cx="120" cy="120" r="16" fill="none" stroke="#F5F1E8" stroke-width="0.8" opacity="0.18"/>
+        <path d="M0,60 Q30,40 60,60 T120,60" fill="none" stroke="#F5F1E8" stroke-width="0.8" opacity="0.14"/>
+      </pattern>
+    </defs>
+    <rect width="1200" height="500" fill="url(#adire)"/>
+  </svg>
+  <div class="wrap">
+    <div class="hero-eyebrow">Lagos, Nigeria</div>
+    <h1>Programmes that hold girls up.</h1>
+    <p class="lede">I build and run the systems behind youth and community programmes — mentorship cohorts, community health education, advocacy campaigns — so the work reaches the girls and young women it's meant for.</p>
+    <div class="role-strip">
+      <span>Program Officer, Learning &amp; Development</span>
+      <span>SDSN Nigeria SDG Advocate</span>
+      <span>Community Organiser</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">See the projects ↓</a>
+      <a href="#contact" class="btn btn-ghost">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<svg class="adire-divider" viewBox="0 0 1200 34" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="34" fill="#F5F1E8"/>
+  <path d="M0,17 Q15,5 30,17 T60,17 T90,17 T120,17 T150,17 T180,17 T210,17 T240,17 T270,17 T300,17 T330,17 T360,17 T390,17 T420,17 T450,17 T480,17 T510,17 T540,17 T570,17 T600,17 T630,17 T660,17 T690,17 T720,17 T750,17 T780,17 T810,17 T840,17 T870,17 T900,17 T930,17 T960,17 T990,17 T1020,17 T1050,17 T1080,17 T1110,17 T1140,17 T1170,17 T1200,17"
+    fill="none" stroke="#C08A2E" stroke-width="1.4" opacity="0.5"/>
+</svg>
+
+<section id="about" class="tight">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">About</div>
+      <h2>Grounded in the work, not the jargon</h2>
+    </div>
+    <div class="about-body">
+      <p>I'm a Program Officer, Learning and Development at MakeHerSmile Africa, an NGO focused on adolescent girls and young women across Lagos communities. Most of what I do is unglamorous by design: building the mentor handbooks, facilitator directories, curricula, budgets, and timetables that let a programme actually run — and keeping a distributed team of staff, volunteers, and partner organisations pointed in the same direction.</p>
+      <p>I'm also a Cohort 8 SDG Advocate with SDSN Nigeria, where I've led community advocacy projects and awareness campaigns, and I'm currently pursuing an MSc in International and Sustainable Development to sharpen the theory behind the practice.</p>
+      <p>My background is in Guidance and Counselling, and it still shows up in how I approach programme design: start with the person, then build the system around them.</p>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Projects</div>
+      <h2>What I've built and run</h2>
+    </div>
+    <div class="proj-grid">
+
+      <div class="proj-card">
+        <div class="proj-top"><span class="eyebrow">MakeHerSmile Africa · Aug 2026 – Jan 2027</span><span class="proj-tag">SDG 4 · SDG 5</span></div>
+        <h3>HerSkills Mentorship Programme, Cohort 1</h3>
+        <p>Built the programme's full infrastructure from scratch — master timetable, facilitator confirmation letters, a 12-module life skills curriculum, a mentor handbook, a Class Governor roles document, and a pre-programme baseline assessment tool — then coordinated rollout with partners including SheUnitesAfrica and RIAHBAGS.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top"><span class="eyebrow">MakeHerSmile Africa · with Global Fund &amp; GNPWLHIV</span><span class="proj-tag">SDG 3</span></div>
+        <h3>EmpowerHER Project</h3>
+        <p>Served as a peer educator on sexual and reproductive health across Ogbomosho, Iseyin, and Ibadan-North, running and documenting community engagement sessions and facilitating stakeholder meetings, and producing bilingual English/Yoruba materials and formal activity reports for funding partners.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top"><span class="eyebrow">SDSN Nigeria &amp; SDSN Youth Nigeria · 2026</span><span class="proj-tag">SDG 3</span></div>
+        <h3>"Lead An SDG" Advocacy Campaign</h3>
+        <p>Designed and led an SDG-focused community advocacy project as a Cohort 8 SDG Advocate — a mental health awareness campaign reaching men, boys, girls, and women of all ages, with reporting back to programme leads across a virtual, multi-stakeholder network.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top"><span class="eyebrow">MakeHerSmile Africa</span><span class="proj-tag">SDG 3</span></div>
+        <h3>Mind Matters</h3>
+        <p>A 30-day mental health awareness campaign built to bring everyday, accessible mental health education to a wider community audience.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top"><span class="eyebrow">Rehoboth Education &amp; Empowerment Initiative · 2025 – 2026</span><span class="proj-tag">SDG 4</span></div>
+        <h3>Volunteer &amp; Education Access Coordination</h3>
+        <p>Led volunteer recruitment, onboarding, and deployment across multiple community sites for education-access programmes reaching out-of-school youth, and facilitated capacity-building workshops on literacy and life skills.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top"><span class="eyebrow">Arise &amp; Bloom Initiative · 2025 – 2026</span><span class="proj-tag">SDG 3</span></div>
+        <h3>Safe-Space Dialogue Sessions</h3>
+        <p>Supported planning and delivery of youth-focused engagements on mental wellbeing and personal development, facilitating dialogue on identity, inclusion, and community resilience.</p>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top"><span class="eyebrow">In collaboration with author Ifeoluwa Elumayowa</span><span class="proj-tag">Events</span></div>
+        <h3>"Dare to Heal" Book Launch</h3>
+        <p>Managing programme logistics and team coordination for the launch of "Dare to Heal," handling documents, guest correspondence, and on-the-ground planning.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="timeline" class="tight">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Timeline</div>
+      <h2>Where the work has taken me</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">Jan 2026 — Present</div>
+        <div><div class="tl-role">SDG Advocate, Cohort 8</div><div class="tl-org">SDSN Nigeria &amp; SDSN Youth Nigeria</div><div class="tl-desc">Completed structured induction across all 17 SDGs, led an SDG-focused community advocacy project, and delivered a mental-health awareness campaign under the "Lead An SDG" initiative.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2025 — Present</div>
+        <div><div class="tl-role">Program Officer, Learning and Development</div><div class="tl-org">MakeHerSmile Africa</div><div class="tl-desc">Coordinating HerSkills Mentorship Programme Cohort 1, partner outreach, internal documentation systems, and stakeholder relationships across staff, facilitators, and community gatekeepers.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Apr 2025 — Apr 2026</div>
+        <div><div class="tl-role">Volunteer Lead Associate</div><div class="tl-org">Rehoboth Education &amp; Empowerment Initiative</div><div class="tl-desc">Led volunteer recruitment and onboarding for education-access programmes reaching out-of-school youth across multiple community sites.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Mar 2025 — Jan 2026</div>
+        <div><div class="tl-role">Programme Lead Support Associate</div><div class="tl-org">Arise &amp; Bloom Initiative (RealTalkWithAtit)</div><div class="tl-desc">Supported youth-focused engagements on mental wellbeing and facilitated safe-space dialogue sessions on identity and inclusion.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">In Progress</div>
+        <div><div class="tl-role">Master of International and Sustainable Development</div><div class="tl-org">Miva Open University, Nigeria</div><div class="tl-desc">Focus on SDG frameworks, gender-responsive development, and continental policy instruments including the African Youth Charter and Maputo Protocol.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2017</div>
+        <div><div class="tl-role">B.Ed., Guidance &amp; Counselling</div><div class="tl-org">University of Nigeria, Nsukka</div><div class="tl-desc">Foundational training in psychosocial support and youth development frameworks — the root of everything above.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery" class="tight">
+  <div class="wrap">
+    <div class="gallery-head">
+      <div class="section-head" style="margin-bottom:0;">
+        <div class="eyebrow">Pictorial Works</div>
+        <h2>From the field</h2>
+      </div>
+    </div>
+
+    <div id="galleryStatus" class="g-loading">Loading your gallery…</div>
+    <div class="gallery-grid" id="galleryGrid" style="display:none;"></div>
+    <div class="gallery-empty" id="galleryEmpty" style="display:none;">
+      <strong>Nothing here yet</strong>
+      Copy photos into the <code>images</code> folder next to this page, then list them in <code>images/manifest.json</code> — see the README in that folder.
+    </div>
+    <p class="gallery-note">Photos are loaded from the <code>images</code> folder next to this page. To add one: drop the file into that folder, then add its filename to <code>images/manifest.json</code> (instructions are in <code>images/README.txt</code>).</p>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow" style="color:var(--gold);">Contact</div>
+      <h2>Let's talk</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-links">
+        <a href="mailto:oluwatoyinonawale2693@gmail.com">oluwatoyinonawale2693@gmail.com</a>
+        <a href="tel:+2349052712294">+234 905 271 2294</a>
+        <a href="https://linkedin.com/in/oluwatoyin-onawale" target="_blank" rel="noopener">linkedin.com/in/oluwatoyin-onawale</a>
+      </div>
+      <p style="max-width:34ch; font-size:0.92rem; color:rgba(245,241,232,0.75); margin:0;">Open to programme, SDG advocacy, and community development collaborations focused on adolescent girls and young women.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Oluwatoyin Onawale — Lagos, Nigeria</span>
+    <span>Social impact work, in progress</span>
+  </div>
+</footer>
+
+<script>
+  // Nav toggle
+  document.getElementById('navtoggle').addEventListener('click', () => {
+    document.getElementById('navlinks').classList.toggle('open');
+  });
+  document.querySelectorAll('.navlinks a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navlinks').classList.remove('open'));
+  });
+
+  // ---------- Gallery loaded from /images/manifest.json ----------
+  const galleryGrid = document.getElementById('galleryGrid');
+  const galleryEmpty = document.getElementById('galleryEmpty');
+  const galleryStatus = document.getElementById('galleryStatus');
+
+  async function loadGallery(){
+    let items = [];
+    try{
+      const res = await fetch('images/manifest.json', { cache: 'no-store' });
+      if(res.ok){
+        items = await res.json();
+      }
+    }catch(e){
+      console.error('Could not load images/manifest.json', e);
+    }
+    render(Array.isArray(items) ? items : []);
+  }
+
+  function render(items){
+    galleryStatus.style.display = 'none';
+    if(items.length === 0){
+      galleryGrid.style.display = 'none';
+      galleryEmpty.style.display = 'block';
+      return;
+    }
+    galleryEmpty.style.display = 'none';
+    galleryGrid.style.display = 'grid';
+    galleryGrid.innerHTML = '';
+    items.forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'g-card';
+      const safeCaption = (item.caption || '').replace(/"/g, '&quot;');
+      card.innerHTML = `
+        <div class="g-img-wrap"><img src="images/${item.file}" alt="${safeCaption || 'Pictorial work'}" loading="lazy"></div>
+        ${item.caption ? `<div class="g-card-body"><p class="g-static-caption">${item.caption}</p></div>` : ''}
+      `;
+      galleryGrid.appendChild(card);
+    });
+  }
+
+  loadGallery();
+
+</script>
+
+</body>
+</html>
